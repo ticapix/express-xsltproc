@@ -18,10 +18,33 @@ function initServer(options) {
 }
 
 describe('express-xsltproc', function() {
+	describe('failure', () => {
+		let server;
+  		beforeEach(function () {
+    		server = initServer({sourcedir: fixtures_path});
+  		});
+  		afterEach(function () {
+    		server.close();
+  		});
+		it('check files are processed (warning as error)', () => {
+			return new Promise((resolve, reject) => {
+				request(server)
+				.get('/menu.xml')
+				.expect(501)
+				.end((error, res) => {
+					error !== null ? reject(error) : resolve();
+				});
+			});
+		});		
+	});
 	describe('transform', () => {
 		let server;
   		beforeEach(function () {
-    		server = initServer({sourcedir: fixtures_path, debug: true});
+    		server = initServer({
+    			sourcedir: fixtures_path,
+    			warning_as_error: false,
+    			stringparams: {n: '42'}
+    		});
   		});
   		afterEach(function () {
     		server.close();
@@ -29,50 +52,32 @@ describe('express-xsltproc', function() {
 		it('check files are processed (warning as warning)', () => {
 			return new Promise((resolve, reject) => {
 				request(server)
-				.get('/page.xml')
+				.get('/menu.xml')
 				.expect(200)
 				.end((error, res) => {
-					if (error !== null) {
-						return reject(error);
-					}
-					resolve();
+					error !== null ? reject(error) : resolve();
 				});
 			});
 		});
-		// it('check files are processed (warning as error)', () => {
-		// 	return new Promise((resolve, reject) => {
-		// 		gulp.src(path.join(fixtures_path, '**', 'menu.xml'))
-		// 		.pipe(xsltproc().on('error', (error) => {
-		// 			assert.notEqual(error.message.indexOf('warning: failed to load external entity'), -1);
-		// 			assert.notEqual(error.message.indexOf('fakefile.dtd'), -1);
-		// 			resolve();
-		// 		}));
-		// 	});
-		// });
-		// it('do not generate metadata', () => {
-		// 	let output = [];
-		// 	return new Promise((resolve, reject) => {
-		// 		gulp.src(path.join(fixtures_path, 'page.xml'))
-		// 		.pipe(xsltproc({metadata: false}))
-		// 		.pipe(map((file, done) => {
-		// 			output.push(path.relative(fixtures_path, file.path));
-		// 			done(null, file);
-		// 		}))
-		// 		.on('end', () => {
-		// 			assert.deepEqual(output, ['page.xml']);
-		// 			resolve();
-		// 		});
-		// 	});
-		// });
-		// it('check stringparams', () => {
-		// 	return new Promise((resolve, reject) => {
-		// 		gulp.src(path.join(fixtures_path, 'params.xml'))
-		// 		.pipe(xsltproc({metadata: false, stringparams: {n: '42'}}))
-		// 		.pipe(map((file, done) => {
-		// 			assert.equal(file.contents, 'n=42');
-		// 			resolve();
-		// 		}));
-		// 	});
-		// });
+		it('check files are processed', () => {
+			return new Promise((resolve, reject) => {
+				request(server)
+				.get('/page.xml')
+				.expect(200)
+				.end((error, res) => {
+					error !== null ? reject(error) : resolve();
+				});
+			});
+		});
+		it('check stringparams', () => {
+			return new Promise((resolve, reject) => {
+				request(server)
+				.get('/params.xml')
+				.expect(200, 'n=42')
+				.end((error, res) => {
+					error !== null ? reject(error) : resolve();
+				});
+			});
+		});
 	});
 });
