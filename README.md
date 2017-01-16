@@ -17,6 +17,11 @@ There is an external dependency on xsltproc required by [`node-xsltproc`](https:
 - `warning_as_error` : treat xsltproc warning as error (default: true)
 - additional options are passed as it is to `node-xsltproc`
 
+### Notes
+
+- This middleware only answers to the `GET` method.
+- The path must end by `*.xml`.
+- The file must have a `<?xml-stylesheet type="text/xsl" href="XXX.xsl"?>` tag
 
 ### Exemples
 
