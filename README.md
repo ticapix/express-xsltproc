@@ -5,7 +5,7 @@
 
 ## Getting started
 
-** THIS PACKAGE USES AWAIT/ASYNC AND REQUIRES NODE 7.x **
+**THIS PACKAGE USES AWAIT/ASYNC AND REQUIRES NODE 7.x**
 
 Install the module with: `npm install express-xsltproc --save`
 
