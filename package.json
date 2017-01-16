@@ -22,5 +22,21 @@
   "bugs": {
     "url": "https://github.com/ticapix/express-xsltproc/issues"
   },
-  "homepage": "https://github.com/ticapix/express-xsltproc#readme"
+  "homepage": "https://github.com/ticapix/express-xsltproc#readme",
+  "dependencies": {
+    "async-file": "^2.0.2",
+    "node-xsltproc": "^1.1.1"
+  },
+  "devDependencies": {
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-add-src": "^0.2.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-jshint": "^2.0.4",
+    "gulp-mocha": "^3.0.1",
+    "http": "0.0.0",
+    "jshint": "^2.9.4",
+    "minimist": "^1.2.0",
+    "supertest": "^2.0.1"
+  }
 }
