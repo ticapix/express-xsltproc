@@ -17,13 +17,6 @@ clean: ## remove all created artefacts
 	$(RM) $(DIST_DIR)
 
 $(NODE_DIR):
-ifeq ($(shell node --version | grep '^v7\.'), )
-ifeq ($(shell which curl), )
-	sudo apt-get install -y curl
-endif
-	curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-	sudo apt-get install -y nodejs
-endif
 	npm install
 
 install-dev: $(NODE_DIR) ## install development dependencies
