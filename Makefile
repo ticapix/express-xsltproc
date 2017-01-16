@@ -25,7 +25,7 @@ test: install-dev ## run test
 	$(NODE) --harmony-async-await $(GULP) test --sourcedir $(SRC_DIR) --testdir $(TEST_DIR) --distdir $(DIST_DIR)
 
 $(DIST_DIR): install-dev
-	$(GULP) dist --sourcedir $(SRC_DIR) --testdir $(TEST_DIR) --distdir $(DIST_DIR)
+	$(NODE) --harmony-async-await $(GULP) dist --sourcedir $(SRC_DIR) --testdir $(TEST_DIR) --distdir $(DIST_DIR)
 
 dist: $(DIST_DIR) ## test and create a clean distribution folder
 
