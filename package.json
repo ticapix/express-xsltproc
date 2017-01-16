@@ -1,0 +1,26 @@
+{
+  "name": "express-xsltproc",
+  "version": "1.0.0",
+  "description": "express middleware node-xsltproc (wrapper around xsltproc with profiling information) ",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ticapix/express-xsltproc.git"
+  },
+  "keywords": [
+    "xsltproc",
+    "express"
+  ],
+  "author": "ticapix",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ticapix/express-xsltproc/issues"
+  },
+  "homepage": "https://github.com/ticapix/express-xsltproc#readme"
+}
