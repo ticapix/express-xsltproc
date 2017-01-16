@@ -4,6 +4,7 @@ const xsltproc = require('node-xsltproc');
 
 function express_xsltproc(options = {}) {
 	options.sourcedir = options.sourcedir || '.';
+	options.warning_as_error = options.warning_as_error === undefined ? true : options.warning_as_error;
 	return async (req, res, next) => {
 		if (req.method !== 'GET') {
 			return next();
